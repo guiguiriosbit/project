@@ -3,6 +3,7 @@ import { Calculator, Save, BarChart3, AlertCircle, Search, Users, Calendar, Tras
 import { supabase, Registro, SalidaDetalle } from './lib/supabase';
 import ExitReasonsModal, { ExitReasonEntry } from './components/ExitReasonsModal';
 import ExitDetailsModal from './components/ExitDetailsModal';
+import SalesTableModal from './components/SalesTableModal';
 
 function App() {
   const [registros, setRegistros] = useState<Registro[]>([]);
@@ -32,6 +33,7 @@ function App() {
   // Modal states
   const [showExitReasonsModal, setShowExitReasonsModal] = useState(false);
   const [showExitDetailsModal, setShowExitDetailsModal] = useState(false);
+  const [showSalesTableModal, setShowSalesTableModal] = useState(false);
   const [selectedExitDetails, setSelectedExitDetails] = useState<SalidaDetalle[]>([]);
   const [selectedRegistroForExits, setSelectedRegistroForExits] = useState<Registro | null>(null);
 
@@ -729,6 +731,18 @@ function App() {
                   <h3 className="text-lg font-semibold text-gray-800 mb-4">
                     Estadísticas de {socioSeleccionado}
                   </h3>
+                  
+                  {/* Botón de Ventas */}
+                  <div className="mb-4">
+                    <button
+                      onClick={() => setShowSalesTableModal(true)}
+                      className="bg-green-600 text-white px-3 py-1.5 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium flex items-center"
+                    >
+                      <DollarSign className="w-4 h-4 mr-1" />
+                      Ventas
+                    </button>
+                  </div>
+                  
                   <div className="grid grid-cols-2 gap-4">
                     <div className="text-center">
                       <div className="text-2xl font-bold text-emerald-600">
@@ -1018,6 +1032,12 @@ function App() {
         socio={selectedRegistroForExits?.socio || ''}
         fecha={selectedRegistroForExits?.fecha || ''}
         registroId={selectedRegistroForExits?.id}
+      />
+
+      <SalesTableModal
+        isOpen={showSalesTableModal}
+        onClose={() => setShowSalesTableModal(false)}
+        socioSeleccionado={socioSeleccionado}
       />
 
       <ExitDetailsModal
