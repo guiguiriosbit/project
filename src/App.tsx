@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calculator, Save, BarChart3, AlertCircle, Search, Users, Calendar, Trash2, Edit3, Check, X, Eye } from 'lucide-react';
+import { Calculator, Save, BarChart3, AlertCircle, Search, Users, Calendar, Trash2, Edit3, Check, X, Eye, DollarSign } from 'lucide-react';
 import { supabase, Registro, SalidaDetalle } from './lib/supabase';
 import ExitReasonsModal, { ExitReasonEntry } from './components/ExitReasonsModal';
 import ExitDetailsModal from './components/ExitDetailsModal';
